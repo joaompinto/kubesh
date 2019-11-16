@@ -8,7 +8,15 @@ CURRENT_DIR = Path(__file__).parent
 
 
 def setup_package():
-    setup()
+
+    # Get readme
+    readme_path = os.path.join(root, "README.md")
+    with io.open(readme_path, encoding="utf8") as f:
+        readme = f.read()
+
+
+    setup(long_description=readme,
+        long_description_content_type="text/markdown",)
 
 
 if __name__ == "__main__":
