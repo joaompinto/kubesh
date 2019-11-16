@@ -11,7 +11,8 @@ class Command_Nodes:
             "Name": "metadata.name",
             "InternalIP": "status.addresses.[type=InternalIP].address",
             "Hostname": "status.addresses.[type=Hostname].address",
-            "Ready": "status.conditions.[reason=KubeletReady].status"
+            "Ready": "status.conditions.[reason=KubeletReady].status",
+            "Version": "status.node_info.kubelet_version"
         }
     )
 
