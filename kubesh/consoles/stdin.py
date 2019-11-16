@@ -1,9 +1,11 @@
 import sys
 
 
-class StdinConsole():
+class StdinConsole:
+    def __init__(self, cmd_handler):
+        self.cmd_handler = cmd_handler
 
-    def run():
+    def run(self):
         while True:
             line = sys.stdin.read()
             if not line:

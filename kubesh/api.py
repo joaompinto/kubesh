@@ -1,4 +1,6 @@
-from kubernetes import client, config
+from kubernetes import client, config  # NOQA: E402
 
-config.load_kube_config()
-api = client.CoreV1Api()
+
+def get_api():
+    config.load_kube_config()
+    return client.CoreV1Api()
