@@ -12,7 +12,7 @@ class Command_Nodes:
             "InternalIP": "status.addresses.[type=InternalIP].address",
             "Hostname": "status.addresses.[type=Hostname].address",
             "Ready": "status.conditions.[reason=KubeletReady].status",
-            "Version": "status.node_info.kubelet_version"
+            "Version": "status.node_info.kubelet_version",
         }
     )
 

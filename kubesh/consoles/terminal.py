@@ -11,10 +11,12 @@ class TerminalConsole:
         # Feed the autocompleter
         self.session = PromptSession()
         self.config_context = config_context
-        self.toolbar_style = Style.from_dict({
-            'bottom-toolbar':      '#aaaa00 bg:#ff0000',
-            'bottom-toolbar.text': '#6A5ACD bg:#ffffff',
-        })
+        self.toolbar_style = Style.from_dict(
+            {
+                "bottom-toolbar": "#aaaa00 bg:#ff0000",
+                "bottom-toolbar.text": "#6A5ACD bg:#ffffff",
+            }
+        )
 
     def run(self):
         while True:
@@ -37,8 +39,8 @@ class TerminalConsole:
                 )
 
     def get_toolbar(self):
-        cluster = self.config_context['context']['cluster']
-        user = self.config_context['context']['user']
+        cluster = self.config_context["context"]["cluster"]
+        user = self.config_context["context"]["user"]
         status = f" <b>{user}@{cluster}</b> "
         return HTML(status)
 
