@@ -3,18 +3,25 @@ from prompt_toolkit.lexers import PygmentsLexer
 from pygments.lexers.data import YamlLexer
 from prompt_toolkit import print_formatted_text, HTML
 from tabulate import tabulate
+from prompt_toolkit.styles import Style
 
 
 class TerminalConsole:
-    def __init__(self):
+    def __init__(self, config_context):
         # Feed the autocompleter
         self.session = PromptSession()
+        self.config_context = config_context
+        self.toolbar_style = Style.from_dict({
+            'bottom-toolbar':      '#aaaa00 bg:#ff0000',
+            'bottom-toolbar.text': '#6A5ACD bg:#ffffff',
+        })
 
     def run(self):
         while True:
             command = self.session.prompt(
                 ">> ",
                 bottom_toolbar=self.get_toolbar,
+                style=self.toolbar_style,
                 refresh_interval=5,
                 lexer=PygmentsLexer(YamlLexer),
             )
@@ -30,7 +37,10 @@ class TerminalConsole:
                 )
 
     def get_toolbar(self):
-        return "ok"
+        cluster = self.config_context['context']['cluster']
+        user = self.config_context['context']['user']
+        status = f" <b>{user}@{cluster}</b> "
+        return HTML(status)
 
     def table(self, table_data):
         headers = table_data[0]

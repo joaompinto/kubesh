@@ -3,6 +3,10 @@ from tabulate import tabulate
 
 
 class StdinConsole:
+
+    def __init__(self, config_context):
+        pass
+
     def run(self):
         while True:
             command = sys.stdin.read()
