@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from ..mapper import table_from_list
 
 
 class Command_Nodes:
@@ -6,18 +7,16 @@ class Command_Nodes:
     description = "List the cluster nodes"
 
     default_fields = OrderedDict(
-        {"NAME": 'metadata.name'}
+        {
+            "Name": "metadata.name",
+            "InternalIP": "status.addresses.[type=InternalIP].address",
+            "Hostname": "status.addresses.[type=Hostname].address",
+            "Ready": "status.conditions.[reason=KubeletReady].status"
+        }
     )
 
     def run(self, console, api):
         response = api.list_node()
-        response_data = []
-        response_data.append(list(self.default_fields))
-        for node_item in response.items:
-            row = []
-            for field_item, field_value in self.default_fields.items():
-                value = eval(f'node_item.{field_value}')
-                row.append(value)
-            response_data.append(row)
+        response_data = table_from_list(response, self.default_fields)
         console.table(response_data)
         return "nodes"

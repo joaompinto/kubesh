@@ -18,5 +18,5 @@ def main():
     commands = load_commands()
     console_class = TerminalConsole if sys.stdin.isatty() else StdinConsole
     console = console_class()
-    cmd_handler = CommandHandler(commands, console, api)
+    CommandHandler(commands, console, api)
     console.run()
