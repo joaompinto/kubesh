@@ -2,8 +2,8 @@ from prompt_toolkit import PromptSession
 from prompt_toolkit.lexers import PygmentsLexer
 from pygments.lexers.data import YamlLexer
 from prompt_toolkit import print_formatted_text, HTML
-from tabulate import tabulate
 from prompt_toolkit.styles import Style
+from tabulate import tabulate
 
 
 class TerminalConsole:
@@ -37,6 +37,8 @@ class TerminalConsole:
                         f"Error: <ansired>Command '{short_cmd}' is not defined</ansired>"
                     )
                 )
+            if result == "quit":
+                exit(0)
 
     def get_toolbar(self):
         cluster = self.config_context["context"]["cluster"]
