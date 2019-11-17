@@ -1,4 +1,4 @@
-class Command_Nodes:
+class Command:
     callers = [".quit", ".q"]
     description = "Quit the current shell"
 

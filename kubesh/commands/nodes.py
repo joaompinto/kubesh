@@ -2,7 +2,7 @@ from collections import OrderedDict
 from ..mapper import table_from_list
 
 
-class Command_Nodes:
+class Command:
     callers = [".nodes", ".n"]
     description = "List the cluster nodes"
 

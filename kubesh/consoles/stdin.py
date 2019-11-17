@@ -14,7 +14,7 @@ class StdinConsole:
             command = command.strip()  # Remove stdin enf of lines
             short_cmd = command.split()[0]
             result = self.cmd_handler.process(command)
-            if result is None:
+            if result == "not_found":
                 print(f"Error: Command '{short_cmd}' is not defined", file=sys.stderr)
 
     def table(self, table_data):

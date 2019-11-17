@@ -31,7 +31,7 @@ class TerminalConsole:
                 continue
             short_cmd = command.split()[0]
             result = self.cmd_handler.process(command)
-            if result is None:
+            if result == "not_found":
                 print_formatted_text(
                     HTML(
                         f"Error: <ansired>Command '{short_cmd}' is not defined</ansired>"

@@ -25,3 +25,16 @@ class CommandHandler:
         handler = self.callers.get(command)
         if handler:
             return handler.run(self.console, self.api)
+        return "not_found"
+
+    @property
+    def all_commands(self):
+
+        # Reduce to unique command objects : https://stackoverflow.com/a/26043525/401041
+        unique_commands = {x for x in self.callers.values()}
+
+        # Reduce to the command name
+        sorted_commands = sorted([cmd.callers[0] for cmd in unique_commands])
+
+        # Return the cmd object for each command name
+        return [self.callers[cmd_name] for cmd_name in sorted_commands]
