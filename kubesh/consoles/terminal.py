@@ -41,6 +41,7 @@ class TerminalConsole:
     def get_toolbar(self):
         cluster = self.config_context["context"]["cluster"]
         user = self.config_context["context"]["user"]
+        user = user.split("/")[0]
         status = f" <b>{user}@{cluster}</b> "
         return HTML(status)
 
