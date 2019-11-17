@@ -16,13 +16,12 @@ Planned features:
 
 ## How to use it
 
-## Using the docker image
+## Run from  the docker image
 ```bash
-docker run   -v "$HOME/.kube/config":/app/kube_config -it joaompinto/kubesh
+docker run --privileged -v "$HOME/.kube/config":/app/kube_config -it joaompinto/kubesh
 ```
 
-## Requirements
-Python3.6+ or Docker
+## Install using Python3.6+
 
 ## How to install
 ```sh
