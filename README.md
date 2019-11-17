@@ -13,3 +13,11 @@ Planned features:
   - [ ] list pods
   - [X] list namespaces
   - [X] list nodes
+
+## Requirements
+Python3.6+
+
+## How to install
+```
+pip3 install --user kubesh
+```
