@@ -13,6 +13,8 @@ def find_item(root_item, field_spec):
                 return None
         else:
             cursor = getattr(cursor, tokenName)
+    if not isinstance(cursor, (str, int, float, tuple, list)):
+        return cursor.to_dict()
     return cursor
 
 

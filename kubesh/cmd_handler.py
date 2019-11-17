@@ -21,10 +21,20 @@ class CommandHandler:
         # Ugly but we need so that console can call us
         console.cmd_handler = self
 
+    def tokenizer(self, command):
+        # it may need to be extended in the future
+        # to handle more complex syntax options
+        command = command.strip()
+        tokens = command.split()
+        return tokens
+
     def process(self, command):
+        tokens = self.tokenizer(command)
+        command = tokens[0]
+        args = [] if len(tokens) < 2 else tokens[1:]
         handler = self.callers.get(command)
         if handler:
-            return handler.run(self.console, self.api)
+            return handler.run(self.console, self.api, args)
         return "not_found"
 
     @property

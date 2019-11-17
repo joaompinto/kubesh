@@ -1,4 +1,5 @@
 import sys
+import yaml
 from tabulate import tabulate
 
 
@@ -21,3 +22,6 @@ class StdinConsole:
         headers = table_data[0]
         values = table_data[1:]
         print(tabulate(values, headers=headers))
+
+    def print_yaml(self, data):
+        yaml.safe_dump(data, default_flow_style=False)

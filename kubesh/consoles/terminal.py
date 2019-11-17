@@ -1,9 +1,12 @@
 from prompt_toolkit import PromptSession
 from prompt_toolkit.lexers import PygmentsLexer
-from pygments.lexers.data import YamlLexer
-from prompt_toolkit import print_formatted_text, HTML
+from pygments.formatters import TerminalFormatter
+from pygments.lexers import YamlLexer
+from prompt_toolkit import print_formatted_text, ANSI, HTML
 from prompt_toolkit.styles import Style
 from tabulate import tabulate
+from pygments import highlight
+import yaml
 
 
 class TerminalConsole:
@@ -51,3 +54,14 @@ class TerminalConsole:
         headers = table_data[0]
         values = table_data[1:]
         print_formatted_text(tabulate(values, headers=headers))
+
+    def print_yaml(self, data):
+        yaml_data = yaml.dump(data)
+        print_formatted_text(
+            ANSI(
+                highlight((yaml_data), lexer=YamlLexer(), formatter=TerminalFormatter())
+            )
+        )
+
+    def error(self, message):
+        print_formatted_text(HTML(f"<ansired>{message}</ansired>"))
