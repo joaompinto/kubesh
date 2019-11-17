@@ -18,6 +18,9 @@ Planned features:
 Python3.6+
 
 ## How to install
-```
+```sh
+# Last Release
 pip3 install --user kubesh
+# Development Release
+pip3 install --user https://github.com/joaompinto/kubesh/archive/master.zip
 ```

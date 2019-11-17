@@ -16,7 +16,15 @@ def setup_package():
     with io.open(readme_path, encoding="utf8") as f:
         readme = f.read()
 
-    setup(long_description=readme, long_description_content_type="text/markdown")
+    # Get requiremeents
+    with io.open("requirements.txt", encoding="utf8") as f:
+        requirements = f.read()
+
+    setup(
+        long_description=readme,
+        long_description_content_type="text/markdown",
+        install_requires=[x for x in requirements.splitlines() if x],
+    )
 
 
 if __name__ == "__main__":
