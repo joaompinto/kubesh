@@ -65,3 +65,6 @@ class TerminalConsole:
 
     def error(self, message):
         print_formatted_text(HTML(f"<ansired>{message}</ansired>"))
+
+    def success(self, message):
+        print_formatted_text(HTML(f"<ansigreen>{message}</ansigreen>"))

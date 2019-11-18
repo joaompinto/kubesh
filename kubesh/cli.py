@@ -13,7 +13,7 @@ def main():
     try:
         api = get_api()
     except TypeError:
-        print("ERROR: Unable to find KUBECONFIG file !!!")
+        print("ERROR: Unable to read the kube cnfig file !!!")
         exit(2)
     commands = load_commands()
     console_class = TerminalConsole if sys.stdin.isatty() else StdinConsole
