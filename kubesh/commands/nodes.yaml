@@ -1,0 +1,21 @@
+---
+When:
+  Context:
+    is_admin: True
+Name: .node
+Description: .node <node_name> - Show node information
+API: read_node(node_name)
+Output:
+  type: YAML
+Completer:
+  API: list_node
+---
+Name: .node
+Description: .node <node_name>.<node_attribute> - Show node attribute
+Shortcut: .n
+API: read_node(node_name)
+Output:
+  Filter: node_attribute
+  Type: YAML
+Completer:
+  API: read_node(node_name)

@@ -3,8 +3,8 @@ from ..mapper import table_from_list
 
 
 class Command:
-    callers = [".pods", ".p"]
-    description = "List the pods"
+    Name = ".pods"
+    Description = "List the pods"
 
     default_fields = OrderedDict(
         {"Namespace": "metadata.name", "Name": "metadata.name"}

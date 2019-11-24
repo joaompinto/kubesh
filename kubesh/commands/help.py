@@ -1,8 +1,8 @@
 class Command:
-    callers = [".help", ".h"]
-    description = "List all available commands"
+    Name = ".help"
+    Description = "List all available commands"
+    Aliases = [".h"]
 
-    def run(self, console, api, argv):
+    def run(self, console, api):
         for cmd in console.cmd_handler.all_commands:
-            callers = "\t".join(cmd.callers)  # tab between full/short
-            print(f"{callers} - {cmd.description}")
+            print(f"{cmd.Name} - {cmd.Description}")

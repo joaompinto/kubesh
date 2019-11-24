@@ -1,4 +1,5 @@
 from prompt_toolkit import PromptSession
+from prompt_toolkit.completion import Completer, Completion
 from prompt_toolkit.lexers import PygmentsLexer
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import YamlLexer
@@ -24,11 +25,12 @@ class TerminalConsole:
     def run(self):
         while True:
             command = self.session.prompt(
-                ">> ",
+                "$ ",
                 bottom_toolbar=self.get_toolbar,
                 style=self.toolbar_style,
                 refresh_interval=5,
                 lexer=PygmentsLexer(YamlLexer),
+                completer=self.NodeCompleter(),
             )
             if not command:  # Just skip empty enters
                 continue
@@ -68,3 +70,9 @@ class TerminalConsole:
 
     def success(self, message):
         print_formatted_text(HTML(f"<ansigreen>{message}</ansigreen>"))
+
+    class NodeCompleter(Completer):
+        def get_completions(self, document, complete_event):
+            word = document.current_line_before_cursor
+            if word == ".n ":
+                yield Completion("animal", display="animal")

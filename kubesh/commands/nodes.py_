@@ -1,0 +1,40 @@
+from collections import OrderedDict
+from ..mapper import table_from_list, find_item
+
+
+class Command:
+    description = ".nodes - List the cluster nodes"
+    metadata = """
+    Description:
+        .nodes - List the cluster nodes
+    Shortcut: .n
+    Default Fields:
+        - Name: metadata.name
+        - InternalIP: status.addresses.[type=InternalIP].address
+        - Hostname: status.addresses.[type=Hostname].address
+        - Ready: status.conditions.[reason=KubeletReady].status
+        - Version: "status.node_info.kubelet_version"
+    """
+
+    def run(self, console, api):
+        response = api.list_node()
+        response_data = table_from_list(response, self.default_fields)
+        console.table(response_data)
+
+
+class CommandShowNode:
+    description = """
+    Description: .node <node_name>[.node_attribute] - Show node information"
+    Shortcut: .n
+    """
+
+    def run(self, console, api, node_name, node_attribute):
+        response = api.read_node(node_name)
+        response_data = find_item(response, node_attribute)
+        console.print_yaml(response_data)
+
+    def completer_1(self, node_name):
+        return =api.list_node(node_name)
+
+    def completer_2(self, node_name, node_attribute):
+        return = find_item(response, node_attribute, keys_only)

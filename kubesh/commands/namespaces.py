@@ -4,12 +4,13 @@ from kubernetes.client import V1Namespace, V1ObjectMeta
 
 
 class Command:
-    callers = [".namespaces", ".ns"]
-    description = "List namespaces"
+    Name = ".namespaces"
+    Description = "List namespaces"
 
     default_fields = OrderedDict({"Name": "metadata.name", "Status": "status.phase"})
 
-    def run(self, console, api, argv):
+    def run(self, console, api):
+        argv = ""
         if len(argv) == 0:
             response = api.list_namespace()
             response_data = table_from_list(response, self.default_fields)
